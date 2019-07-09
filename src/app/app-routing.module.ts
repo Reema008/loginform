@@ -1,0 +1,48 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { SuccessComponent } from './success/success.component';
+import { FormComponent } from './form/form.component';
+import { PasswordComponent } from './password/password.component';
+import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
+import { FailComponent } from './fail/fail.component';
+
+const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent ,
+    data: { title: 'Login Form' }
+  },
+  {
+    path: 'success',
+    component: SuccessComponent ,
+    data: { title: 'Login Successful' }
+  },
+  {
+    path: 'fail',
+    component: FailComponent ,
+    data: { title: 'Login UnSuccessful' }
+  },
+  {
+    path: 'form',
+    component: FormComponent ,
+    data: { title: 'Registration Form' }
+  },
+  {
+    path: 'setpassword',
+    component: PasswordComponent ,
+    data: { title: 'Password Validations' }
+  },
+
+  {
+    path: 'termsandconditions',
+    component: TermsAndConditionsComponent,
+    data: { title: 'Terms and Conditions' }
+  },
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

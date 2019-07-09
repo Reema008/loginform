@@ -1,0 +1,156 @@
+<div style="text-align:center">
+    <h1>
+       {{ title }}
+    </h1>
+  <div class="formstyle">
+
+<form [formGroup]="angForm" novalidate>
+ 
+      Full Name:<span style="margin-left:11.3em">Date of Birth:</span><br>
+
+      <input type="text" formControlName="name">
+      <span style="margin-left:5em">
+        <input type="date" formControlName="dob"></span>
+
+  <div *ngIf="angForm.controls['name'].invalid && (angForm.controls['name'].dirty || angForm.controls['name'].touched)">
+      <div *ngIf="angForm.controls['name'].errors.required" class="error">
+      Name is required.
+    </div>
+    <div *ngIf="angForm.controls['name'].errors.minlength" class="error">
+      Name must be at least 4 characters long.
+    </div>
+    
+  </div>
+  <div *ngIf="angForm.controls['dob'].invalid && (angForm.controls['dob'].dirty || angForm.controls['dob'].touched)" >
+      <div *ngIf="angForm.controls['dob'].errors.required" class="error">
+          <span style="margin-left:16em">Date of Birth is required.</span>
+    </div>
+  </div>
+<br><br>
+
+      Email:<span style="margin-left:13.1em">Contact Number:</span><br>
+
+
+      <input type="email" formControlName="email">
+      <span style="margin-left:5em">
+        <input type="number" formControlName="num"></span>
+
+
+  <div *ngIf="angForm.controls['email'].invalid && (angForm.controls['email'].dirty || angForm.controls['email'].touched)" >
+      <div *ngIf="angForm.controls['email'].errors.required" class="error">
+      Email is required.
+    </div>
+    <div *ngIf="angForm.controls['email'].errors.email" class="error">
+      Invalid mail.
+    </div>
+  </div>
+
+  
+  <div *ngIf="angForm.controls['num'].invalid && (angForm.controls['num'].dirty || angForm.controls['num'].touched)" >
+      <div *ngIf="angForm.controls['num'].errors.required" class="error">
+          <span style="margin-left:16em">Contact Number is required.</span>
+    </div>
+    <div *ngIf="angForm.controls['num'].errors.pattern" class="error">
+        <span style="margin-left:16em">Invalid Contact Number.</span>
+    </div>
+  </div>
+
+  <br><br>
+
+      Password:<span style="margin-left:12em">Tell us about yourself:</span><br>
+      <input type="password"  formControlName="password"><br>
+      <a  routerLink="/setpassword" >Password Should Contain...</a>
+      <span style="margin-left:5em"><textarea cols="20" rows="2" style="border-style:solid;
+        border-width: 3px;
+        border-color: grey"name="about" 
+         type="text" formControlName="abtu"></textarea></span>
+
+  <div *ngIf="angForm.controls['password'].invalid && (angForm.controls['password'].dirty || angForm.controls['password'].touched)" >
+      <div *ngIf="angForm.controls['password'].errors.required" class="error">
+      Password is required.
+    </div>
+    <div *ngIf="angForm.controls['password'].errors.pattern" class="error">
+      Invalid Password.
+    </div>
+  </div> 
+
+
+  <div *ngIf="angForm.controls['abtu'].invalid && (angForm.controls['abtu'].dirty || angForm.controls['abtu'].touched)" >
+      <div *ngIf="angForm.controls['abtu'].errors.required" class="error">
+        <span style="margin-left:16em">Describe yourself.</span>
+    </div></div> 
+  <br><br>
+
+    States:&nbsp;<select name="states"  formControlName="states">
+      <option value="Telangana">Telangana</option>
+      <option value="Andhra Pradesh">Andhra Pradesh</option>
+      <option value="Kerala">Kerala</option>
+      <option value="Tamil Nadu">Tamil Nadu</option>
+      <option value="Karnataka">Karnataka</option>
+    </select><span style="margin-left:6em"> <input type="radio" value="male" class="form-control" formControlName="gender">Male
+      <input type="radio" value="female" class="form-control" formControlName="gender">Female</span>
+
+
+  <div *ngIf="angForm.controls['states'].invalid && (angForm.controls['states'].dirty || angForm.controls['states'].touched)" >
+      <div *ngIf="angForm.controls['states'].errors.required" class="error">
+      Select your state.
+    </div>
+  </div> 
+
+
+  <div *ngIf="angForm.controls['gender'].invalid && (angForm.controls['gender'].dirty || angForm.controls['gender'].touched)">
+      <div *ngIf="angForm.controls['gender'].errors.required" class="error"><span style="margin-left:16.2em">
+      Gender is required.</span>
+    </div>
+  </div> 
+<br><br>
+
+  
+  <input type="checkbox" >I want to receive email about updates to website.
+  
+<br>
+
+  
+      <input type="checkbox" value="agree"  formControlName="accept">
+      I accept the <a routerLink="/termsandconditions">Terms and Conditions</a>.  
+    
+  <div *ngIf="angForm.controls['accept'].invalid && (angForm.controls['accept'].dirty || angForm.controls['accept'].touched)" >
+      <div *ngIf="angForm.controls['accept'].errors.required" class="error">
+      Agree to continue....
+    </div>
+  </div> 
+<br><br><br>
+
+
+  <div style="text-align: center"> <button (click)="onSubmit(angForm.value)"[disabled]="angForm.pristine || angForm.invalid" class="button">Register</button>
+    <!-- <br><a  routerLink="/login" >Click to go back</a> -->
+  </div>
+
+</form>
+</div><br>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>About You</th>
+            <th>State</th>
+            <th>Gender</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr  *ngFor="let item of array;let  i = index">
+            <td>{{i+1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.dob}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.num}}</td>
+            <td>{{item.abtu}}</td>
+            <td>{{item.states}}</td>
+            <td>{{item.gender}}</td>
+        </tbody>
+      </table>
+</div>
